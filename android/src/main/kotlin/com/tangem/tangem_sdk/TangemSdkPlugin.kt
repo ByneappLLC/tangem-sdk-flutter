@@ -5,7 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Base64
 import com.tangem.*
-import com.tangem.common.biometric.BiometricManager
+import com.tangem.common.authentication.AuthenticationManager
+import com.tangem.common.authentication.KeystoreManager
 import com.tangem.common.core.Config
 import com.tangem.common.core.ScanTagImage
 import com.tangem.common.core.ScanTagImage.GenericCard
@@ -17,6 +18,7 @@ import com.tangem.sdk.DefaultSessionViewDelegate
 import com.tangem.sdk.NfcLifecycleObserver
 import com.tangem.sdk.extensions.getWordlist
 import com.tangem.sdk.extensions.initBiometricManager
+import com.tangem.sdk.extensions.initKeystoreManager
 import com.tangem.sdk.nfc.NfcManager
 import com.tangem.sdk.storage.create
 import io.flutter.embedding.android.FlutterFragmentActivity
@@ -60,9 +62,10 @@ class TangemSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         val viewDelegate = createViewDelegate(activity, nfcManager)
         val storage = SecureStorage.create(activity)
         val config = Config()
-        val biometricManager: BiometricManager = TangemSdk.initBiometricManager(activity, storage)
+        val authenticationManager: AuthenticationManager = TangemSdk.initBiometricManager(activity)
         val wordlist: Wordlist = Wordlist.getWordlist(activity)
-        sdk = TangemSdk(nfcManager.reader, viewDelegate, storage, biometricManager, wordlist, config)
+        val keystoreManager = TangemSdk.initKeystoreManager(authenticationManager, storage)
+        sdk = TangemSdk(nfcManager.reader, viewDelegate, storage, wordlist, config, authenticationManager, keystoreManager)
         nfcManager.onStart()
     }
 
@@ -78,7 +81,7 @@ class TangemSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     private fun createViewDelegate(activity: Activity, nfcManager: NfcManager): SessionViewDelegate {
-        return DefaultSessionViewDelegate(nfcManager, nfcManager.reader, activity)
+        return DefaultSessionViewDelegate(nfcManager, activity)
     }
 
     override fun onReattachedToActivityForConfigChanges(pluginBinding: ActivityPluginBinding) {
