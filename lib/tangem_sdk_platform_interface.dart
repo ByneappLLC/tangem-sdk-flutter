@@ -20,15 +20,9 @@ abstract class TangemSdkPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+  Future<String?> getPlatformVersion();
 
-  Future<String> runJSONRPCRequest(Map<String, dynamic> request) {
-    throw UnimplementedError('runJSONRPCRequest has not been implemented.');
-  }
+  Future<String> runJSONRPCRequest(Map<String, dynamic> request);
 
-  Future<String> setScanImage(ScanTagImage? scanCardImage) {
-    throw UnimplementedError('setCardImage has not been implemented.');
-  }
+  Future<String> setScanImage(ScanTagImage? scanCardImage);
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tangem_sdk/model/tangem_requests.dart';
 import 'package:tangem_sdk/tangem_sdk.dart';
 import 'package:tangem_sdk_example/app_widgets.dart';
 import 'package:tangem_sdk_example/source.dart';
@@ -44,7 +45,10 @@ class _CommandListWidgetState extends State<CommandListWidget> {
   String? _scanImage;
   String _response = "";
 
+  String? _accesscode;
+
   final _controller = TextEditingController();
+  final _accesscodeController = TextEditingController();
 
   @override
   void initState() {
@@ -52,6 +56,9 @@ class _CommandListWidgetState extends State<CommandListWidget> {
 
     _sdk = TangemSdk();
     _controller.addListener(() {
+      setState(() {});
+    });
+    _accesscodeController.addListener(() {
       setState(() {});
     });
   }
@@ -94,6 +101,46 @@ class _CommandListWidgetState extends State<CommandListWidget> {
           ),
           SizedBox(height: 5),
           Divider(),
+          ActionType(
+              "Load AccessCode into memory (to avoid requiring AccessCode on every scan)"),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(height: 5),
+                TextField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    labelText: "Enter card AccessCode",
+                    isDense: true,
+                  ),
+                  obscureText: true,
+                  controller: _accesscodeController,
+                ),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                          child: Text("Load"),
+                          onPressed: _accesscodeController.text.isEmpty
+                              ? null
+                              : () {
+                                  setState(() {
+                                    _accesscode = _accesscodeController.text;
+                                  });
+
+                                  _accesscodeController.clear();
+                                  FocusScope.of(context).unfocus();
+                                }),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Divider(),
           ActionType("JSONRRPC"),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -116,7 +163,8 @@ class _CommandListWidgetState extends State<CommandListWidget> {
                   children: [
                     OutlinedButton(
                         onPressed: () async {
-                          final data = await Clipboard.getData(Clipboard.kTextPlain);
+                          final data =
+                              await Clipboard.getData(Clipboard.kTextPlain);
                           final textData = data?.text ?? "";
                           if (textData.isEmpty) return;
 
@@ -127,7 +175,9 @@ class _CommandListWidgetState extends State<CommandListWidget> {
                     Expanded(
                       child: OutlinedButton(
                         child: Text("Launch"),
-                        onPressed: _controller.text.isEmpty ? null : () => _handleJsonRpc(_controller.text),
+                        onPressed: _controller.text.isEmpty
+                            ? null
+                            : () => _handleJsonRpc(_controller.text),
                       ),
                     )
                   ],
@@ -143,21 +193,36 @@ class _CommandListWidgetState extends State<CommandListWidget> {
     );
   }
 
-  void _handleScanCard() {
-    _execJsonRPCRequest(_makeJsonRpc(SdkMethod.scan));
+  void _handleScanCard() async {
+    final res = await _sdk.scanCard(ScanCardRequest(
+      accessCode: _accesscode,
+    ));
+
+    if (res.result != null) {
+      _cardId = res.result!.cardId;
+      _walletPublicKey = res.result!.wallets[0].publicKey;
+    }
+
+    _printResponse(res);
   }
 
-  void _handleSign() {
+  void _handleSign() async {
     if (_cardId == null || _walletPublicKey == null) {
       _notify("Scan the card or create a wallet");
       return;
     }
 
-    final request = _makeJsonRpc(SdkMethod.sign_hash, {
-      "walletPublicKey": _walletPublicKey,
-      "hash": "f1642bb080e1f320924dde7238c1c5f8f1642bb080e1f320924dde7238c1c5f8ff",
-    });
-    _execJsonRPCRequest(request, _cardId);
+    final req = SignHashRequest(
+      walletPublicKey: _walletPublicKey!,
+      hash:
+          "f1642bb080e1f320924dde7238c1c5f8f1642bb080e1f320924dde7238c1c5f8ff",
+      cardId: _cardId,
+      accessCode: _accesscode,
+    );
+
+    final res = await _sdk.sign(req);
+
+    _printResponse(res);
   }
 
   void _handleSetScanImage() {
@@ -236,7 +301,8 @@ class _CommandListWidgetState extends State<CommandListWidget> {
     }
   }
 
-  void _execJsonRPCRequest(JSONRPCRequest request, [String? cardId, Message? message, String? accessCode]) {
+  void _execJsonRPCRequest(JSONRPCRequest request,
+      [String? cardId, Message? message, String? accessCode]) {
     final completeRequest = {
       "JSONRPCRequest": jsonEncode(request),
       "cardId": cardId,
@@ -294,7 +360,8 @@ class _CommandListWidgetState extends State<CommandListWidget> {
     }
   }
 
-  JSONRPCRequest _makeJsonRpc(SdkMethod method, [Map<String, dynamic> params = const {}]) {
+  JSONRPCRequest _makeJsonRpc(SdkMethod method,
+      [Map<String, dynamic> params = const {}]) {
     return JSONRPCRequest(describeEnum(method), params, _getMethodId(method));
   }
 
@@ -325,7 +392,6 @@ class _CommandListWidgetState extends State<CommandListWidget> {
     }
   }
 // describeEnum
-
 }
 
 enum SdkMethod {

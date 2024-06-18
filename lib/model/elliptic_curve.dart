@@ -21,16 +21,16 @@ enum EllipticCurve {
   Bip0340,
 }
 
-extension on EllipticCurve {
-  bool supportsDerivation() {
-    return switch (this) {
-      EllipticCurve.Secp256k1 ||
-      EllipticCurve.Ed25519 ||
-      EllipticCurve.Ed25519Slip0010 ||
-      EllipticCurve.Secp256r1 ||
-      EllipticCurve.Bip0340 =>
-        true,
-      _ => false
-    };
-  }
-}
+// extension on EllipticCurve {
+//   bool supportsDerivation() {
+//     return switch (this) {
+//       EllipticCurve.Secp256k1 ||
+//       EllipticCurve.Ed25519 ||
+//       EllipticCurve.Ed25519Slip0010 ||
+//       EllipticCurve.Secp256r1 ||
+//       EllipticCurve.Bip0340 =>
+//         true,
+//       _ => false
+//     };
+//   }
+// }

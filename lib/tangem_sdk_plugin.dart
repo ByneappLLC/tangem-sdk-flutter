@@ -1,9 +1,31 @@
+import 'package:tangem_sdk/model/scan_card_result.dart';
+import 'package:tangem_sdk/model/sign_hash_result.dart';
+import 'package:tangem_sdk/model/tangem_requests.dart';
+
 import 'model/sdk.dart';
 import 'tangem_sdk_platform_interface.dart';
 
 class TangemSdk {
   Future<String?> getPlatformVersion() {
     return TangemSdkPlatform.instance.getPlatformVersion();
+  }
+
+  Future<ScanCardResult> scanCard(ScanCardRequest request) async {
+    final res =
+        await TangemSdkPlatform.instance.runJSONRPCRequest(request.toJson());
+
+    final result = ScanCardResult.fromResponse(res);
+
+    return result;
+  }
+
+  Future<SignHashResult> sign(SignHashRequest request) async {
+    final res =
+        await TangemSdkPlatform.instance.runJSONRPCRequest(request.toJson());
+
+    final result = SignHashResult.fromResponse(res);
+
+    return result;
   }
 
   Future<String> runJSONRPCRequest(Map<String, dynamic> request) {
