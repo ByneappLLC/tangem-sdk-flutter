@@ -24,8 +24,12 @@ mixin _$SignHashResult {
   Object? get error => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
 
+  /// Serializes this SignHashResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SignHashResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignHashResultCopyWith<SignHashResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$SignHashResultCopyWithImpl<$Res, $Val extends SignHashResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignHashResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -71,6 +77,8 @@ class _$SignHashResultCopyWithImpl<$Res, $Val extends SignHashResult>
     ) as $Val);
   }
 
+  /// Create a copy of SignHashResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SignResultCopyWith<$Res>? get result {
@@ -106,6 +114,8 @@ class __$$SignHashResultImplCopyWithImpl<$Res>
       _$SignHashResultImpl _value, $Res Function(_$SignHashResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignHashResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,12 +167,14 @@ class _$SignHashResultImpl implements _SignHashResult {
             (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, result, const DeepCollectionEquality().hash(error), id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignHashResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignHashResultImplCopyWith<_$SignHashResultImpl> get copyWith =>
@@ -192,8 +204,11 @@ abstract class _SignHashResult implements SignHashResult {
   Object? get error;
   @override
   int? get id;
+
+  /// Create a copy of SignHashResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignHashResultImplCopyWith<_$SignHashResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -208,8 +223,12 @@ mixin _$SignResult {
   String get signature => throw _privateConstructorUsedError;
   int get totalSignedHashes => throw _privateConstructorUsedError;
 
+  /// Serializes this SignResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SignResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SignResultCopyWith<SignResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -233,6 +252,8 @@ class _$SignResultCopyWithImpl<$Res, $Val extends SignResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SignResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -276,6 +297,8 @@ class __$$SignResultImplCopyWithImpl<$Res>
       _$SignResultImpl _value, $Res Function(_$SignResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SignResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -335,12 +358,14 @@ class _$SignResultImpl implements _SignResult {
                 other.totalSignedHashes == totalSignedHashes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, cardId, signature, totalSignedHashes);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SignResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SignResultImplCopyWith<_$SignResultImpl> get copyWith =>
@@ -369,8 +394,11 @@ abstract class _SignResult implements SignResult {
   String get signature;
   @override
   int get totalSignedHashes;
+
+  /// Create a copy of SignResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignResultImplCopyWith<_$SignResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

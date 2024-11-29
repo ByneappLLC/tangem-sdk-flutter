@@ -66,8 +66,12 @@ mixin _$Settings {
      */
   bool get isHDWalletAllowed => throw _privateConstructorUsedError;
 
+  /// Serializes this Settings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Settings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SettingsCopyWith<Settings> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -101,6 +105,8 @@ class _$SettingsCopyWithImpl<$Res, $Val extends Settings>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Settings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -195,6 +201,8 @@ class __$$SettingsImplCopyWithImpl<$Res>
       _$SettingsImpl _value, $Res Function(_$SettingsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Settings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -386,7 +394,7 @@ class _$SettingsImpl implements _Settings {
                 other.isHDWalletAllowed == isHDWalletAllowed));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -402,7 +410,9 @@ class _$SettingsImpl implements _Settings {
       isFilesAllowed,
       isHDWalletAllowed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Settings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
@@ -433,63 +443,66 @@ abstract class _Settings implements Settings {
   factory _Settings.fromJson(Map<String, dynamic> json) =
       _$SettingsImpl.fromJson;
 
-  @override
-  /**
+/**
      * Delay in milliseconds before executing a command that affects any sensitive data or wallets on the card
      */
-  int get securityDelay;
   @override
+  int get securityDelay;
   /**
      * Maximum number of wallets that can be created for this card
      */
-  int get maxWalletsCount;
   @override
+  int get maxWalletsCount;
   /**
      * Is allowed to change access code
      */
-  bool get isSettingAccessCodeAllowed;
   @override
+  bool get isSettingAccessCodeAllowed;
   /**
      * Is  allowed to change passcode
      */
-  bool get isSettingPasscodeAllowed;
   @override
+  bool get isSettingPasscodeAllowed;
   /**
      * Is allowed to remove access code
      */
-  bool get isRemovingUserCodesAllowed;
   @override
+  bool get isRemovingUserCodesAllowed;
   /**
      * Is LinkedTerminal feature enabled
      */
-  bool get isLinkedTerminalEnabled;
   @override
+  bool get isLinkedTerminalEnabled;
   /**
      * Is backup feature available
      */
-  bool get isBackupAllowed;
   @override
+  bool get isBackupAllowed;
   /**
      * Is allowed to import  keys. COS. v6+
      */
-  bool get isKeysImportAllowed;
   @override
+  bool get isKeysImportAllowed;
   /**
      * All  encryption modes supported by the card
      */
-  List<EncryptionMode> get supportedEncryptionModes;
   @override
+  List<EncryptionMode> get supportedEncryptionModes;
   /**
      * Is allowed to write files
      */
-  bool get isFilesAllowed;
   @override
+  bool get isFilesAllowed;
   /**
      * Is allowed to use hd wallet
      */
-  bool get isHDWalletAllowed;
   @override
-  @JsonKey(ignore: true)
+  bool get isHDWalletAllowed;
+
+  /// Create a copy of Settings
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SettingsImplCopyWith<_$SettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

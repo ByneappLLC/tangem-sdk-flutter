@@ -24,8 +24,12 @@ mixin _$ScanCardResult {
   Object? get error => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
 
+  /// Serializes this ScanCardResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ScanCardResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ScanCardResultCopyWith<ScanCardResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$ScanCardResultCopyWithImpl<$Res, $Val extends ScanCardResult>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ScanCardResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -71,6 +77,8 @@ class _$ScanCardResultCopyWithImpl<$Res, $Val extends ScanCardResult>
     ) as $Val);
   }
 
+  /// Create a copy of ScanCardResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CardCopyWith<$Res>? get result {
@@ -106,6 +114,8 @@ class __$$ScanCardResultImplCopyWithImpl<$Res>
       _$ScanCardResultImpl _value, $Res Function(_$ScanCardResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ScanCardResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,12 +167,14 @@ class _$ScanCardResultImpl implements _ScanCardResult {
             (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, result, const DeepCollectionEquality().hash(error), id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScanCardResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScanCardResultImplCopyWith<_$ScanCardResultImpl> get copyWith =>
@@ -192,8 +204,11 @@ abstract class _ScanCardResult implements ScanCardResult {
   Object? get error;
   @override
   int? get id;
+
+  /// Create a copy of ScanCardResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScanCardResultImplCopyWith<_$ScanCardResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

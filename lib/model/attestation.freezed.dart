@@ -25,8 +25,12 @@ mixin _$Attestation {
   Status get firmwareAttestation => throw _privateConstructorUsedError;
   Status get cardUniquenessAttestation => throw _privateConstructorUsedError;
 
+  /// Serializes this Attestation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Attestation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AttestationCopyWith<Attestation> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$AttestationCopyWithImpl<$Res, $Val extends Attestation>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Attestation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$AttestationImplCopyWithImpl<$Res>
       _$AttestationImpl _value, $Res Function(_$AttestationImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Attestation
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -177,12 +185,14 @@ class _$AttestationImpl implements _Attestation {
                 other.cardUniquenessAttestation == cardUniquenessAttestation));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, cardKeyAttestation,
       walletKeysAttestation, firmwareAttestation, cardUniquenessAttestation);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Attestation
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AttestationImplCopyWith<_$AttestationImpl> get copyWith =>
@@ -214,8 +224,11 @@ abstract class _Attestation implements Attestation {
   Status get firmwareAttestation;
   @override
   Status get cardUniquenessAttestation;
+
+  /// Create a copy of Attestation
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AttestationImplCopyWith<_$AttestationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

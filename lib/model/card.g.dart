@@ -23,7 +23,7 @@ _$CardImpl _$$CardImplFromJson(Map<String, dynamic> json) => _$CardImpl(
       isAccessCodeSet: json['isAccessCodeSet'] as bool,
       isPasscodeSet: json['isPasscodeSet'] as bool?,
       supportedCurves: (json['supportedCurves'] as List<dynamic>)
-          .map((e) => $enumDecode(_$EllipticCurveEnumMap, e))
+          .map((e) => const EllipticCurveConverter().fromJson(e as String))
           .toList(),
       wallets: (json['wallets'] as List<dynamic>)
           .map((e) => CardWallet.fromJson(e as Map<String, dynamic>))
@@ -50,7 +50,7 @@ Map<String, dynamic> _$$CardImplToJson(_$CardImpl instance) =>
       'isAccessCodeSet': instance.isAccessCodeSet,
       'isPasscodeSet': instance.isPasscodeSet,
       'supportedCurves': instance.supportedCurves
-          .map((e) => _$EllipticCurveEnumMap[e]!)
+          .map(const EllipticCurveConverter().toJson)
           .toList(),
       'wallets': instance.wallets,
       'attestation': instance.attestation,
@@ -62,15 +62,4 @@ const _$LinkedTerminalStatusEnumMap = {
   LinkedTerminalStatus.Current: 'current',
   LinkedTerminalStatus.Other: 'other',
   LinkedTerminalStatus.None: 'none',
-};
-
-const _$EllipticCurveEnumMap = {
-  EllipticCurve.Secp256k1: 'secp256k1',
-  EllipticCurve.Secp256r1: 'secp256r1',
-  EllipticCurve.Ed25519: 'ed25519',
-  EllipticCurve.Ed25519Slip0010: 'ed25519Slip0010',
-  EllipticCurve.Bls12381G2: 'bls12381G2',
-  EllipticCurve.Bls12381G2Aug: 'bls12381G2Aug',
-  EllipticCurve.Bls12381G2Pop: 'bls12381G2Pop',
-  EllipticCurve.Bip0340: 'bip0340',
 };

@@ -74,6 +74,7 @@ mixin _$Card {
   /**
      * Array of ellipctic curves, supported by this card. Only wallets with these curves can be created.
      */
+  @EllipticCurveConverter()
   List<EllipticCurve> get supportedCurves => throw _privateConstructorUsedError;
   /**
      * Wallets, created on the card, that can be used for signature
@@ -95,8 +96,12 @@ mixin _$Card {
      */
   int? get remainingSignatures => throw _privateConstructorUsedError;
 
+  /// Serializes this Card to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CardCopyWith<Card> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -117,7 +122,7 @@ abstract class $CardCopyWith<$Res> {
       LinkedTerminalStatus linkedTerminalStatus,
       bool isAccessCodeSet,
       bool? isPasscodeSet,
-      List<EllipticCurve> supportedCurves,
+      @EllipticCurveConverter() List<EllipticCurve> supportedCurves,
       List<CardWallet> wallets,
       Attestation attestation,
       int? health,
@@ -141,6 +146,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -229,6 +236,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     ) as $Val);
   }
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FirmwareVersionCopyWith<$Res> get firmwareVersion {
@@ -237,6 +246,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     });
   }
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManufacturerCopyWith<$Res> get manufacturer {
@@ -245,6 +256,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     });
   }
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $IssuerCopyWith<$Res> get issuer {
@@ -253,6 +266,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     });
   }
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SettingsCopyWith<$Res> get settings {
@@ -261,6 +276,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     });
   }
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserSettingsCopyWith<$Res> get userSettings {
@@ -269,6 +286,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     });
   }
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AttestationCopyWith<$Res> get attestation {
@@ -297,7 +316,7 @@ abstract class _$$CardImplCopyWith<$Res> implements $CardCopyWith<$Res> {
       LinkedTerminalStatus linkedTerminalStatus,
       bool isAccessCodeSet,
       bool? isPasscodeSet,
-      List<EllipticCurve> supportedCurves,
+      @EllipticCurveConverter() List<EllipticCurve> supportedCurves,
       List<CardWallet> wallets,
       Attestation attestation,
       int? health,
@@ -324,6 +343,8 @@ class __$$CardImplCopyWithImpl<$Res>
   __$$CardImplCopyWithImpl(_$CardImpl _value, $Res Function(_$CardImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -428,6 +449,7 @@ class _$CardImpl implements _Card {
       required this.linkedTerminalStatus,
       required this.isAccessCodeSet,
       this.isPasscodeSet,
+      @EllipticCurveConverter()
       required final List<EllipticCurve> supportedCurves,
       required final List<CardWallet> wallets,
       this.attestation = Attestation.empty,
@@ -508,6 +530,7 @@ class _$CardImpl implements _Card {
      * Array of ellipctic curves, supported by this card. Only wallets with these curves can be created.
      */
   @override
+  @EllipticCurveConverter()
   List<EllipticCurve> get supportedCurves {
     if (_supportedCurves is EqualUnmodifiableListView) return _supportedCurves;
     // ignore: implicit_dynamic_type
@@ -587,7 +610,7 @@ class _$CardImpl implements _Card {
                 other.remainingSignatures == remainingSignatures));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -608,7 +631,9 @@ class _$CardImpl implements _Card {
       health,
       remainingSignatures);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CardImplCopyWith<_$CardImpl> get copyWith =>
@@ -635,6 +660,7 @@ abstract class _Card implements Card {
       required final LinkedTerminalStatus linkedTerminalStatus,
       required final bool isAccessCodeSet,
       final bool? isPasscodeSet,
+      @EllipticCurveConverter()
       required final List<EllipticCurve> supportedCurves,
       required final List<CardWallet> wallets,
       final Attestation attestation,
@@ -643,97 +669,101 @@ abstract class _Card implements Card {
 
   factory _Card.fromJson(Map<String, dynamic> json) = _$CardImpl.fromJson;
 
-  @override
-  /**
+/**
      * Unique Tangem card ID number.
      */
-  String get cardId;
   @override
+  String get cardId;
   /**
      * Tangem internal manufacturing batch ID.
      */
-  String get batchId;
   @override
+  String get batchId;
   /**
      * Public key that is used to authenticate the card against manufacturer’s database.
      * It is generated one time during card manufacturing.
      */
-  String get cardPublicKey;
   @override
+  String get cardPublicKey;
   /**
      * Version of Tangem COS.
      */
-  FirmwareVersion get firmwareVersion;
   @override
+  FirmwareVersion get firmwareVersion;
   /**
      * Information about manufacturer.
      */
-  Manufacturer get manufacturer;
   @override
+  Manufacturer get manufacturer;
   /**
      * Information about issuer
      */
-  Issuer get issuer;
   @override
+  Issuer get issuer;
   /**
      * Card setting, that were set during the personalization process
      */
-  Settings get settings;
   @override
+  Settings get settings;
   /**
      * Card settings that were set during the personalization process and can be changed by user directly
      */
-  UserSettings get userSettings;
   @override
+  UserSettings get userSettings;
   /**
      * When this value is `current`, it means that the application is linked to the card,
      * and COS will not enforce security delay if `SignCommand` will be called
      * with `TlvTag.TerminalTransactionSignature` parameter containing a correct signature of raw data
      * to be signed made with `TlvTag.TerminalPublicKey`.
      * */
-  LinkedTerminalStatus get linkedTerminalStatus;
   @override
+  LinkedTerminalStatus get linkedTerminalStatus;
   /**
      * Access code (aka PIN1) is set.
      */
-  bool get isAccessCodeSet;
   @override
+  bool get isAccessCodeSet;
   /**
      * COS v. 4.33 and higher - always available
      * COS v. 1.19 and lower - always unavailable
      * COS  v > 1.19 &&  v < 4.33 - available only if `isResettingUserCodesAllowed` set to true
      */
-  bool? get isPasscodeSet;
   @override
+  bool? get isPasscodeSet;
   /**
      * Array of ellipctic curves, supported by this card. Only wallets with these curves can be created.
      */
-  List<EllipticCurve> get supportedCurves;
   @override
+  @EllipticCurveConverter()
+  List<EllipticCurve> get supportedCurves;
   /**
      * Wallets, created on the card, that can be used for signature
      */
-  List<CardWallet> get wallets;
   @override
+  List<CardWallet> get wallets;
   /**
      * Card's attestation report
      */
-  Attestation get attestation;
   @override
+  Attestation get attestation;
   /**
      *  Any non-zero value indicates that the card experiences some hardware problems.
      *  User should withdraw the value to other blockchain wallet as soon as possible.
      *  Non-zero Health tag will also appear in responses of all other commands.
      */
-  int? get health;
   @override
+  int? get health;
   /**
      *  Remaining number of `SignCommand` operations before the wallet will stop signing transactions.
      *  Note: This counter were deprecated for cards with COS 4.0 and higher
      */
-  int? get remainingSignatures;
   @override
-  @JsonKey(ignore: true)
+  int? get remainingSignatures;
+
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CardImplCopyWith<_$CardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

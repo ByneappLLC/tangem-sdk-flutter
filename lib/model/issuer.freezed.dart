@@ -29,8 +29,12 @@ mixin _$Issuer {
      */
   String get publicKey => throw _privateConstructorUsedError;
 
+  /// Serializes this Issuer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Issuer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $IssuerCopyWith<Issuer> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -52,6 +56,8 @@ class _$IssuerCopyWithImpl<$Res, $Val extends Issuer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Issuer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +95,8 @@ class __$$IssuerImplCopyWithImpl<$Res>
       _$IssuerImpl _value, $Res Function(_$IssuerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Issuer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,11 +150,13 @@ class _$IssuerImpl implements _Issuer {
                 other.publicKey == publicKey));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, publicKey);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Issuer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$IssuerImplCopyWith<_$IssuerImpl> get copyWith =>
@@ -167,18 +177,21 @@ abstract class _Issuer implements Issuer {
 
   factory _Issuer.fromJson(Map<String, dynamic> json) = _$IssuerImpl.fromJson;
 
-  @override
-  /**
+/**
      * Name of the issuer.
      */
-  String get name;
   @override
+  String get name;
   /**
      * Public key that is used by the card issuer to sign IssuerData field.
      */
-  String get publicKey;
   @override
-  @JsonKey(ignore: true)
+  String get publicKey;
+
+  /// Create a copy of Issuer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$IssuerImplCopyWith<_$IssuerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

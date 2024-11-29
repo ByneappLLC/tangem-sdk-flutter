@@ -194,16 +194,20 @@ class _CommandListWidgetState extends State<CommandListWidget> {
   }
 
   void _handleScanCard() async {
-    final res = await _sdk.scanCard(ScanCardRequest(
-      accessCode: _accesscode,
-    ));
+    try {
+      final res = await _sdk.scanCard(ScanCardRequest(
+        accessCode: _accesscode,
+      ));
 
-    if (res.result != null) {
-      _cardId = res.result!.cardId;
-      _walletPublicKey = res.result!.wallets[0].publicKey;
+      if (res.result != null) {
+        _cardId = res.result!.cardId;
+        _walletPublicKey = res.result!.wallets[0].publicKey;
+      }
+
+      _printResponse(res);
+    } catch (e) {
+      _notify(e.toString());
     }
-
-    _printResponse(res);
   }
 
   void _handleSign() async {

@@ -20,7 +20,7 @@ class CardWallet with _$CardWallet {
     /**
      *  Elliptic curve used for all wallet key operations.
      */
-    required EllipticCurve curve,
+    @EllipticCurveConverter() required EllipticCurve curve,
     /**
      *  Wallet's settings
      */

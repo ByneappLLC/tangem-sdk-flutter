@@ -33,6 +33,7 @@ mixin _$CardWallet {
   /**
      *  Elliptic curve used for all wallet key operations.
      */
+  @EllipticCurveConverter()
   EllipticCurve get curve => throw _privateConstructorUsedError;
   /**
      *  Wallet's settings
@@ -65,8 +66,12 @@ mixin _$CardWallet {
      */
   Map<Object, Object> get derivedKeys => throw _privateConstructorUsedError;
 
+  /// Serializes this CardWallet to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CardWallet
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CardWalletCopyWith<CardWallet> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -80,7 +85,7 @@ abstract class $CardWalletCopyWith<$Res> {
   $Res call(
       {String publicKey,
       String? chainCode,
-      EllipticCurve curve,
+      @EllipticCurveConverter() EllipticCurve curve,
       CardSettings settings,
       int? totalSignedHashes,
       int? remainingSignatures,
@@ -102,6 +107,8 @@ class _$CardWalletCopyWithImpl<$Res, $Val extends CardWallet>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CardWallet
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,6 +167,8 @@ class _$CardWalletCopyWithImpl<$Res, $Val extends CardWallet>
     ) as $Val);
   }
 
+  /// Create a copy of CardWallet
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CardSettingsCopyWith<$Res> get settings {
@@ -180,7 +189,7 @@ abstract class _$$CardWalletImplCopyWith<$Res>
   $Res call(
       {String publicKey,
       String? chainCode,
-      EllipticCurve curve,
+      @EllipticCurveConverter() EllipticCurve curve,
       CardSettings settings,
       int? totalSignedHashes,
       int? remainingSignatures,
@@ -201,6 +210,8 @@ class __$$CardWalletImplCopyWithImpl<$Res>
       _$CardWalletImpl _value, $Res Function(_$CardWalletImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardWallet
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -266,7 +277,7 @@ class _$CardWalletImpl implements _CardWallet {
   const _$CardWalletImpl(
       {required this.publicKey,
       this.chainCode,
-      required this.curve,
+      @EllipticCurveConverter() required this.curve,
       required this.settings,
       this.totalSignedHashes,
       this.remainingSignatures,
@@ -295,6 +306,7 @@ class _$CardWalletImpl implements _CardWallet {
      *  Elliptic curve used for all wallet key operations.
      */
   @override
+  @EllipticCurveConverter()
   final EllipticCurve curve;
 /**
      *  Wallet's settings
@@ -373,7 +385,7 @@ class _$CardWalletImpl implements _CardWallet {
                 .equals(other._derivedKeys, _derivedKeys));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -388,7 +400,9 @@ class _$CardWalletImpl implements _CardWallet {
       hasBackup,
       const DeepCollectionEquality().hash(_derivedKeys));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardWallet
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CardWalletImplCopyWith<_$CardWalletImpl> get copyWith =>
@@ -406,7 +420,7 @@ abstract class _CardWallet implements CardWallet {
   const factory _CardWallet(
       {required final String publicKey,
       final String? chainCode,
-      required final EllipticCurve curve,
+      @EllipticCurveConverter() required final EllipticCurve curve,
       required final CardSettings settings,
       final int? totalSignedHashes,
       final int? remainingSignatures,
@@ -418,62 +432,66 @@ abstract class _CardWallet implements CardWallet {
   factory _CardWallet.fromJson(Map<String, dynamic> json) =
       _$CardWalletImpl.fromJson;
 
-  @override
-  /**
+/**
      * Wallet's public key.
      * For [EllipticCurve.Secp256k1], the key can be compressed or uncompressed.
      * Use [com.tangem.crypto.Secp256k1Key] for any conversions.
      */
-  String get publicKey;
   @override
+  String get publicKey;
   /**
      * Optional chain code for BIP32 derivation.
      */
-  String? get chainCode;
   @override
+  String? get chainCode;
   /**
      *  Elliptic curve used for all wallet key operations.
      */
-  EllipticCurve get curve;
   @override
+  @EllipticCurveConverter()
+  EllipticCurve get curve;
   /**
      *  Wallet's settings
      */
-  CardSettings get settings;
   @override
+  CardSettings get settings;
   /**
      * Total number of signed hashes returned by the wallet since its creation
      * COS 1.16+
      */
-  int? get totalSignedHashes;
   @override
+  int? get totalSignedHashes;
   /**
      * Remaining number of `Sign` operations before the wallet will stop signing any data.
      * Note: This counter were deprecated for cards with COS 4.0 and higher
      */
-  int? get remainingSignatures;
   @override
+  int? get remainingSignatures;
   /**
      *  Index of the wallet in the card storage
      */
-  int get index;
   @override
+  int get index;
   /**
      *  Has this key been imported to a card. E.g. from seed phrase
      */
-  bool get isImported;
   @override
+  bool get isImported;
   /**
      *  Shows whether this wallet has a backup
      */
-  bool get hasBackup;
   @override
+  bool get hasBackup;
   /**
      * Derived keys according to [com.tangem.common.core.Config.defaultDerivationPaths]
      */
-  Map<Object, Object> get derivedKeys;
   @override
-  @JsonKey(ignore: true)
+  Map<Object, Object> get derivedKeys;
+
+  /// Create a copy of CardWallet
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CardWalletImplCopyWith<_$CardWalletImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -489,8 +507,12 @@ mixin _$CardSettings {
      */
   bool get isPermanent => throw _privateConstructorUsedError;
 
+  /// Serializes this CardSettings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CardSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CardSettingsCopyWith<CardSettings> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -514,6 +536,8 @@ class _$CardSettingsCopyWithImpl<$Res, $Val extends CardSettings>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CardSettings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -547,6 +571,8 @@ class __$$CardSettingsImplCopyWithImpl<$Res>
       _$CardSettingsImpl _value, $Res Function(_$CardSettingsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardSettings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -589,11 +615,13 @@ class _$CardSettingsImpl implements _CardSettings {
                 other.isPermanent == isPermanent));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, isPermanent);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CardSettingsImplCopyWith<_$CardSettingsImpl> get copyWith =>
@@ -614,13 +642,16 @@ abstract class _CardSettings implements CardSettings {
   factory _CardSettings.fromJson(Map<String, dynamic> json) =
       _$CardSettingsImpl.fromJson;
 
-  @override
-  /**
+/**
      * If true, erasing the wallet will be prohibited
      */
-  bool get isPermanent;
   @override
-  @JsonKey(ignore: true)
+  bool get isPermanent;
+
+  /// Create a copy of CardSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CardSettingsImplCopyWith<_$CardSettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

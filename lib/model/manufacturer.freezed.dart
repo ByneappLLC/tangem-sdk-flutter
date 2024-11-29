@@ -33,8 +33,12 @@ mixin _$Manufacturer {
      */
   String? get signature => throw _privateConstructorUsedError;
 
+  /// Serializes this Manufacturer to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ManufacturerCopyWith<Manufacturer> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$ManufacturerCopyWithImpl<$Res, $Val extends Manufacturer>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +107,8 @@ class __$$ManufacturerImplCopyWithImpl<$Res>
       _$ManufacturerImpl _value, $Res Function(_$ManufacturerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -167,12 +175,14 @@ class _$ManufacturerImpl implements _Manufacturer {
                 other.signature == signature));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, name, manufactureDate, signature);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ManufacturerImplCopyWith<_$ManufacturerImpl> get copyWith =>
@@ -195,23 +205,26 @@ abstract class _Manufacturer implements Manufacturer {
   factory _Manufacturer.fromJson(Map<String, dynamic> json) =
       _$ManufacturerImpl.fromJson;
 
-  @override
-  /**
+/**
      * Card manufacturer name.
      */
-  String get name;
   @override
+  String get name;
   /**
      * Timestamp of manufacturing.
      */
-  DateTime get manufactureDate;
   @override
+  DateTime get manufactureDate;
   /**
      * Signature of CardId with manufacturer’s private key. COS 1.21+
      */
-  String? get signature;
   @override
-  @JsonKey(ignore: true)
+  String? get signature;
+
+  /// Create a copy of Manufacturer
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ManufacturerImplCopyWith<_$ManufacturerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

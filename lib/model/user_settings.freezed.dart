@@ -25,8 +25,12 @@ mixin _$UserSettings {
      */
   bool get isUserCodeRecoveryAllowed => throw _privateConstructorUsedError;
 
+  /// Serializes this UserSettings to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserSettingsCopyWith<UserSettings> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$UserSettingsCopyWithImpl<$Res, $Val extends UserSettings>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserSettings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,6 +89,8 @@ class __$$UserSettingsImplCopyWithImpl<$Res>
       _$UserSettingsImpl _value, $Res Function(_$UserSettingsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserSettings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,11 +134,13 @@ class _$UserSettingsImpl implements _UserSettings {
                 other.isUserCodeRecoveryAllowed == isUserCodeRecoveryAllowed));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, isUserCodeRecoveryAllowed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserSettingsImplCopyWith<_$UserSettingsImpl> get copyWith =>
@@ -151,13 +161,16 @@ abstract class _UserSettings implements UserSettings {
   factory _UserSettings.fromJson(Map<String, dynamic> json) =
       _$UserSettingsImpl.fromJson;
 
-  @override
-  /**
+/**
      * Is allowed to recover user codes
      */
-  bool get isUserCodeRecoveryAllowed;
   @override
-  @JsonKey(ignore: true)
+  bool get isUserCodeRecoveryAllowed;
+
+  /// Create a copy of UserSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserSettingsImplCopyWith<_$UserSettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

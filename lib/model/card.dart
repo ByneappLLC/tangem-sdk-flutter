@@ -67,7 +67,7 @@ class Card with _$Card {
     /**
      * Array of ellipctic curves, supported by this card. Only wallets with these curves can be created.
      */
-    required List<EllipticCurve> supportedCurves,
+    @EllipticCurveConverter() required List<EllipticCurve> supportedCurves,
     /**
      * Wallets, created on the card, that can be used for signature
      */
