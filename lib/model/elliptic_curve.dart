@@ -5,7 +5,6 @@ class EllipticCurveConverter extends JsonConverter<EllipticCurve, String> {
 
   @override
   EllipticCurve fromJson(String json) {
-    print("Decoding EllipticCurve json: $json");
     switch (json) {
       case "secp256k1":
         return EllipticCurve.secp256k1;

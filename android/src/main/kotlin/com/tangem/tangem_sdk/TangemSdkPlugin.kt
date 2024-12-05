@@ -5,6 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Base64
 import com.tangem.*
+import com.tangem.common.card.EllipticCurve
+import com.tangem.common.card.FirmwareVersion
 import com.tangem.common.core.Config
 import com.tangem.common.core.ScanTagImage
 import com.tangem.common.core.ScanTagImage.GenericCard
@@ -12,6 +14,7 @@ import com.tangem.common.extensions.hexToBytes
 import com.tangem.common.json.MoshiJsonConverter
 import com.tangem.common.services.secure.SecureStorage
 import com.tangem.crypto.bip39.Wordlist
+import com.tangem.crypto.hdWallet.DerivationPath
 import com.tangem.sdk.DefaultSessionViewDelegate
 import com.tangem.sdk.extensions.getWordlist
 import com.tangem.sdk.extensions.initAuthenticationManager
@@ -60,6 +63,32 @@ class TangemSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         val viewDelegate = DefaultSessionViewDelegate(nfcManager, activity)
         val storage = SecureStorage.create(activity)
         val config = Config()
+        config.apply {
+            filter.allowedCardTypes = FirmwareVersion.FirmwareType.values().toList()
+            /// Derivations based on https://github.com/tangem/blockchain-sdk-kotlin/blob/develop/blockchain/src/main/java/com/tangem/blockchain/common/derivation/DerivationConfigV3.kt
+            defaultDerivationPaths = mutableMapOf(
+                EllipticCurve.Secp256k1 to listOf(
+                    // EVM based blockchains
+                    DerivationPath(rawPath = "m/44'/60'/0'/0/0"),
+                    // EVM based blockchain testnets
+                    DerivationPath(rawPath = "m/44'/1'/0'/0/0"),
+                    // Bitcoin
+                    DerivationPath(rawPath = "m/84'/0'/0'/0/0"),
+                    // Dogecoin
+                    DerivationPath(rawPath = "m/44'/3'/0'/0/0"),
+                    // xrp
+                    DerivationPath(rawPath = "m/44'/144'/0'/0/0"),
+                    // TON
+                    DerivationPath(rawPath = "m/44'/607'/0'")
+                ),
+                EllipticCurve.Ed25519 to listOf(
+                    // Solana
+                    DerivationPath(rawPath = "m/44'/501'/0'"),
+                    // Cardano
+                    DerivationPath(rawPath = "m/1852'/1815'/0'/0/0")
+                )
+            )
+        }
 
         val nfcAvailabilityProvider = AndroidNfcAvailabilityProvider(activity)
 
