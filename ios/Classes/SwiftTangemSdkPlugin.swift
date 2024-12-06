@@ -22,6 +22,7 @@ public class SwiftTangemSdkPlugin: NSObject, FlutterPlugin {
                     try! DerivationPath(rawPath: "m/84'/0'/0'/0/0"),    // Bitcoin
                     try! DerivationPath(rawPath: "m/44'/3'/0'/0/0"),    // Dogecoin
                     try! DerivationPath(rawPath: "m/44'/144'/0'/0/0"),  // XRP
+                    try! DerivationPath(rawPath: "m/84'/2'/0'/0/0"),    // Litecoin
                 ],
                 .ed25519: [
                     try! DerivationPath(rawPath: "m/44'/501'/0'"),      // Solana

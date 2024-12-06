@@ -78,6 +78,8 @@ class TangemSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     DerivationPath(rawPath = "m/44'/3'/0'/0/0"),
                     // xrp
                     DerivationPath(rawPath = "m/44'/144'/0'/0/0"),
+                    // litecoin
+                    DerivationPath(rawPath = "m/84'/2'/0'/0/0"),
                 ),
                 EllipticCurve.Ed25519 to listOf(
                     // Solana
