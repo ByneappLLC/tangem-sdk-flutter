@@ -83,9 +83,9 @@ class TangemSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     // Solana
                     DerivationPath(rawPath = "m/44'/501'/0'"),
                     // Cardano
-                    DerivationPath(rawPath = "m/1852'/1815'/0'/0/0")
+                    DerivationPath(rawPath = "m/1852'/1815'/0'/0/0"),
                     // TON
-                    DerivationPath(rawPath = "m/44'/607'/0'")
+                    DerivationPath(rawPath = "m/44'/607'/0'"),
                 )
             )
         }
