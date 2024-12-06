@@ -18,7 +18,8 @@ _$CardWalletImpl _$$CardWalletImplFromJson(Map<String, dynamic> json) =>
       isImported: json['isImported'] as bool,
       hasBackup: json['hasBackup'] as bool,
       derivedKeys: (json['derivedKeys'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as Object),
+            (k, e) => MapEntry(
+                k, ExtendedPublicKey.fromJson(e as Map<String, dynamic>)),
           ) ??
           const {},
     );

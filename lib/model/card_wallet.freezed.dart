@@ -64,7 +64,8 @@ mixin _$CardWallet {
   /**
      * Derived keys according to [com.tangem.common.core.Config.defaultDerivationPaths]
      */
-  Map<Object, Object> get derivedKeys => throw _privateConstructorUsedError;
+  Map<Object, ExtendedPublicKey> get derivedKeys =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this CardWallet to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -92,7 +93,7 @@ abstract class $CardWalletCopyWith<$Res> {
       int index,
       bool isImported,
       bool hasBackup,
-      Map<Object, Object> derivedKeys});
+      Map<Object, ExtendedPublicKey> derivedKeys});
 
   $CardSettingsCopyWith<$Res> get settings;
 }
@@ -163,7 +164,7 @@ class _$CardWalletCopyWithImpl<$Res, $Val extends CardWallet>
       derivedKeys: null == derivedKeys
           ? _value.derivedKeys
           : derivedKeys // ignore: cast_nullable_to_non_nullable
-              as Map<Object, Object>,
+              as Map<Object, ExtendedPublicKey>,
     ) as $Val);
   }
 
@@ -196,7 +197,7 @@ abstract class _$$CardWalletImplCopyWith<$Res>
       int index,
       bool isImported,
       bool hasBackup,
-      Map<Object, Object> derivedKeys});
+      Map<Object, ExtendedPublicKey> derivedKeys});
 
   @override
   $CardSettingsCopyWith<$Res> get settings;
@@ -266,7 +267,7 @@ class __$$CardWalletImplCopyWithImpl<$Res>
       derivedKeys: null == derivedKeys
           ? _value._derivedKeys
           : derivedKeys // ignore: cast_nullable_to_non_nullable
-              as Map<Object, Object>,
+              as Map<Object, ExtendedPublicKey>,
     ));
   }
 }
@@ -284,7 +285,7 @@ class _$CardWalletImpl implements _CardWallet {
       required this.index,
       required this.isImported,
       required this.hasBackup,
-      final Map<Object, Object> derivedKeys = const {}})
+      final Map<Object, ExtendedPublicKey> derivedKeys = const {}})
       : _derivedKeys = derivedKeys;
 
   factory _$CardWalletImpl.fromJson(Map<String, dynamic> json) =>
@@ -343,13 +344,13 @@ class _$CardWalletImpl implements _CardWallet {
 /**
      * Derived keys according to [com.tangem.common.core.Config.defaultDerivationPaths]
      */
-  final Map<Object, Object> _derivedKeys;
+  final Map<Object, ExtendedPublicKey> _derivedKeys;
 /**
      * Derived keys according to [com.tangem.common.core.Config.defaultDerivationPaths]
      */
   @override
   @JsonKey()
-  Map<Object, Object> get derivedKeys {
+  Map<Object, ExtendedPublicKey> get derivedKeys {
     if (_derivedKeys is EqualUnmodifiableMapView) return _derivedKeys;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_derivedKeys);
@@ -427,7 +428,7 @@ abstract class _CardWallet implements CardWallet {
       required final int index,
       required final bool isImported,
       required final bool hasBackup,
-      final Map<Object, Object> derivedKeys}) = _$CardWalletImpl;
+      final Map<Object, ExtendedPublicKey> derivedKeys}) = _$CardWalletImpl;
 
   factory _CardWallet.fromJson(Map<String, dynamic> json) =
       _$CardWalletImpl.fromJson;
@@ -486,7 +487,7 @@ abstract class _CardWallet implements CardWallet {
      * Derived keys according to [com.tangem.common.core.Config.defaultDerivationPaths]
      */
   @override
-  Map<Object, Object> get derivedKeys;
+  Map<Object, ExtendedPublicKey> get derivedKeys;
 
   /// Create a copy of CardWallet
   /// with the given fields replaced by the non-null parameter values.

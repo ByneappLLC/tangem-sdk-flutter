@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tangem_sdk/model/elliptic_curve.dart';
+import 'package:tangem_sdk/model/extended_public_key.dart';
 
 part 'card_wallet.freezed.dart';
 part 'card_wallet.g.dart';
@@ -50,7 +51,7 @@ class CardWallet with _$CardWallet {
     /**
      * Derived keys according to [com.tangem.common.core.Config.defaultDerivationPaths]
      */
-    @Default({}) Map<Object, Object> derivedKeys,
+    @Default({}) Map<String, ExtendedPublicKey> derivedKeys,
   }) = _CardWallet;
 
   factory CardWallet.fromJson(Map<String, dynamic> json) =>
