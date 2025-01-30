@@ -222,9 +222,10 @@ class _CommandListWidgetState extends State<CommandListWidget> {
           "f1642bb080e1f320924dde7238c1c5f8f1642bb080e1f320924dde7238c1c5f8ff",
       cardId: _cardId,
       accessCode: _accesscode,
+      //derivationPath: "m/44'/60'/0'/0/0",
     );
 
-    final res = await _sdk.sign(req);
+    final res = await _sdk.signHash(req);
 
     _printResponse(res);
   }

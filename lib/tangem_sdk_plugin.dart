@@ -19,11 +19,20 @@ class TangemSdk {
     return result;
   }
 
-  Future<SignHashResult> sign(SignHashRequest request) async {
+  Future<SignHashResult> signHash(SignHashRequest request) async {
     final res =
         await TangemSdkPlatform.instance.runJSONRPCRequest(request.toJson());
 
     final result = SignHashResult.fromResponse(res);
+
+    return result;
+  }
+
+  Future<SignHashesResult> signHashes(SignHashesRequest request) async {
+    final res =
+        await TangemSdkPlatform.instance.runJSONRPCRequest(request.toJson());
+
+    final result = SignHashesResult.fromResponse(res);
 
     return result;
   }

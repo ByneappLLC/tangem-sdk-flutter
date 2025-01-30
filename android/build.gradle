@@ -27,6 +27,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
+    namespace = "com.tangem.tangem_sdk"
     compileSdkVersion 34
 
     compileOptions {

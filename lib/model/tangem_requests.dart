@@ -4,6 +4,7 @@ import 'package:tangem_sdk/model/method.dart';
 class SignHashRequest extends BaseTangemRequest {
   final String walletPublicKey;
   final String hash;
+  final String? derivationPath;
 
   SignHashRequest({
     required this.walletPublicKey,
@@ -11,6 +12,7 @@ class SignHashRequest extends BaseTangemRequest {
     String? cardId,
     Message? message,
     String? accessCode,
+    this.derivationPath,
   }) : super(cardId, message, accessCode);
 
   Map<String, dynamic> toJson() {
@@ -20,6 +22,40 @@ class SignHashRequest extends BaseTangemRequest {
         'hash': hash,
       },
     );
+
+    if (derivationPath != null) {
+      req['hdPath'] = derivationPath;
+    }
+
+    return super.baseToJson(req);
+  }
+}
+
+class SignHashesRequest extends BaseTangemRequest {
+  final String walletPublicKey;
+  final List<String> hashes;
+  final String? derivationPath;
+
+  SignHashesRequest({
+    required this.walletPublicKey,
+    required this.hashes,
+    String? cardId,
+    Message? message,
+    String? accessCode,
+    this.derivationPath,
+  }) : super(cardId, message, accessCode);
+
+  Map<String, dynamic> toJson() {
+    final req = Method.Sign.requestJson(
+      {
+        'walletPublicKey': walletPublicKey,
+        'hashes': hashes,
+      },
+    );
+
+    if (derivationPath != null) {
+      req['hdPath'] = derivationPath;
+    }
 
     return super.baseToJson(req);
   }
